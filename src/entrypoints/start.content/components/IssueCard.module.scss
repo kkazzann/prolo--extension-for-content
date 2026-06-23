@@ -1,0 +1,235 @@
+@use '../colors' as colors;
+@use 'sass:color';
+
+.card {
+  border: 1px solid color.adjust(colors.$dawn-grey, $alpha: 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  background-color: colors.$honest-white;
+  transition:
+    filter 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+    .openIcon {
+      transform: scale(1.15);
+    }
+
+    .titleText.animate {
+      animation-play-state: paused;
+    }
+
+    .assigneesTrack.animate {
+      animation-play-state: paused;
+    }
+
+    text-decoration: none;
+  }
+
+  &.mineCard {
+    border-color: colors.$happy-red;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+
+    .titleContainer {
+      overflow: hidden;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .titleText {
+      margin: 0;
+      color: colors.$dawn-grey;
+      font-size: 16px;
+      display: inline-block;
+      padding-right: 20px;
+      font-weight: 700;
+
+      &.animate {
+        animation: scrollLeftRight var(--scroll-duration, 6s) ease-in-out infinite alternate;
+      }
+    }
+
+    .openIcon {
+      font-size: 20px;
+      width: 24px;
+      height: 24px;
+      color: colors.$dark-grey;
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+      flex-shrink: 0;
+      margin-top: 2px;
+      margin-left: 8px;
+    }
+  }
+
+  .assigneesMarquee {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin-top: 12px;
+  }
+
+  .assigneesTrack {
+    display: flex;
+    width: max-content;
+
+    &.animate {
+      animation: marqueeInfinite var(--marquee-duration, 25s) linear infinite;
+    }
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  .assigneesList {
+    display: flex;
+    gap: 8px;
+    padding-right: 8px;
+  }
+
+  .badge {
+    background: colors.$urban-grey;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 13px;
+    color: colors.$dawn-grey;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: colors.$dark-grey;
+    }
+
+    &.mine {
+      background: colors.$happy-red;
+      color: colors.$honest-white;
+      border: 1px solid colors.$happy-red;
+      font-weight: bold;
+
+      svg {
+        color: colors.$honest-white;
+      }
+    }
+  }
+
+  .translations {
+    margin-top: 16px;
+    margin-bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .title {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: colors.$dawn-grey;
+    }
+
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      padding: 4px 8px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: break-spaces;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      &.done {
+        background: color.adjust(colors.$availability-green, $alpha: -0.85);
+        color: colors.$availability-green;
+        border: 1px solid color.adjust(colors.$availability-green, $alpha: -0.7);
+      }
+
+      &.pending {
+        background: colors.$light-peach;
+        color: colors.$cozy-brown;
+        border: 1px solid color.adjust(colors.$happy-red, $alpha: -0.8);
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .columnChip {
+      background: colors.$subtle-peach;
+      color: colors.$cozy-brown;
+      border: 1px solid color.adjust(colors.$cozy-brown, $alpha: -0.7);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}
+
+@keyframes scrollLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(0);
+  }
+  85% {
+    transform: translateX(var(--scroll-dist));
+  }
+  100% {
+    transform: translateX(var(--scroll-dist));
+  }
+}
+
+@keyframes marqueeInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

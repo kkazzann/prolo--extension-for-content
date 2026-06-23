@@ -1,0 +1,147 @@
+@use '../colors' as colors;
+@use 'sass:color';
+
+.board {
+  width: 100%;
+  margin: 0 auto;
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: colors.$background-grey;
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .leftControls {
+      display: flex;
+      gap: 16px;
+      flex: 1;
+      align-items: center;
+    }
+
+    .searchInput {
+      padding: 10px 16px;
+      font-size: 14px;
+      border: 1px solid colors.$medium-grey;
+      border-radius: 6px;
+      width: 100%;
+      max-width: 350px;
+      height: 100%;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: colors.$warm-yellow;
+        box-shadow: 0 0 0 0.2rem color.adjust(colors.$warm-yellow, $alpha: -0.75);
+      }
+    }
+
+    .toggleBtn {
+      background: colors.$honest-white;
+      border: 1px solid colors.$medium-grey;
+      padding: 10px 16px;
+      border-radius: 6px;
+      height: 100%;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: colors.$dark-grey;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all 0.2s;
+
+      &:hover {
+        background: colors.$urban-grey;
+      }
+    }
+
+    .checkboxLabel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: colors.$dark-grey;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+
+      input {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        accent-color: colors.$happy-red;
+        margin: 0;
+      }
+    }
+
+    .count {
+      color: colors.$dawn-grey;
+      background: colors.$urban-grey;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+  }
+
+  .grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+
+    // i feel like this is too disturbing when viewing that many issues at once, won't work well for content team
+
+    // &:has(a:hover) {
+    //   a:not(:hover) {
+    //     filter: blur(1px);
+    //     opacity: 0.7;
+    //   }
+    // }
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: 15px;
+  color: colors.$dark-grey;
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+  }
+
+  span {
+    font-weight: 600;
+    margin-block: 16px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    color: colors.$happy-red;
+    font-family: monospace;
+    font-size: 16px;
+  }
+
+  .warningText {
+    margin-top: 16px;
+    color: colors.$happy-red;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}

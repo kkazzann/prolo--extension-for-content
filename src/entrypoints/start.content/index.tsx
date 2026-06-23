@@ -3,7 +3,7 @@ import App from './App';
 
 export default defineContentScript({
   // matches: ["*://*.google.com/*"],
-  matches: ['https://prolodev.prologistics.info/start.php'],
+  matches: ['*://*.prologistics.info/start.php*'],
   main() {
     const fullTable = document.getElementById('fulltable');
 
