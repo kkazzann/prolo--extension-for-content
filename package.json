@@ -1,6 +1,6 @@
 {
   "name": "prolo--extension-for-content",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Prologistics extension for Content Team",
   "author": "Technology - Graphic HTML",
@@ -28,7 +28,7 @@
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@stacksjs/bumpx": "^0.2.6",
+    "@stacksjs/bumpx": "0.2.4",
     "@types/node": "^26.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
